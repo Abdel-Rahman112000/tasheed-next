@@ -1,0 +1,93 @@
+// Define the hover styles in a mixin
+@mixin hoverStyles {
+  .project-image {
+    transform: scale(1.125);
+  }
+  .overlay {
+    opacity: 1;
+    &::before {
+      transform: scale(2);
+    }
+    .main-title {
+      transform: translate(0, 0);
+      opacity: 1;
+    }
+    .sub-title {
+      transform: translate(0, 0);
+      transition-delay: 200ms;
+      opacity: 1;
+    }
+    button {
+      opacity: 1;
+    }
+  }
+}
+
+.home-project-card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+
+  .project-image {
+    transition: 300ms ease-in-out;
+  }
+
+  .overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    transition: 200ms ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .main-title {
+      transform: translate(0.5em, -0.25em);
+      transition: 400ms;
+      opacity: 0;
+    }
+
+    .sub-title {
+      transform: translate(-1em, -0.5em);
+      transition: 400ms;
+      opacity: 0;
+    }
+
+    button {
+      opacity: 0;
+      transition: 200ms;
+    }
+
+    &::before {
+      content: "";
+      border-radius: 500px;
+      position: absolute;
+      z-index: -1;
+      background: #00000062;
+      width: 0;
+      height: 0;
+      transform: scale(0);
+      width: 100%;
+      padding-top: 100%;
+      transition: 350ms;
+      pointer-events: none;
+    }
+  }
+
+  // Use the mixin for hover
+  &:hover {
+    @include hoverStyles;
+  }
+
+  // Use the same mixin inside media query for screens below 1024px
+}
+
+@media (max-width: 1024px) {
+  .home-project-card {
+    @include hoverStyles;
+  }
+}
