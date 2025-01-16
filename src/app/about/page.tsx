@@ -9,7 +9,11 @@ import getAboutPageData from "@/utils/api/get/about-page";
 import { About } from "@/types/request/about";
 import Mission from "./components/mission";
 import OurProjects from "./components/our-projects";
-
+export async function generateMetadata({ params }) {
+  return {
+    title: "...",
+  };
+}
 async function AboutUsPage() {
   const about = await getAboutPageData();
 

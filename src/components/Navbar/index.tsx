@@ -19,11 +19,12 @@ import NavDrawer from "./Drawer";
 import { useAnimation, motion } from "framer-motion";
 import Link from "next/link";
 import i18n from "@/i18n/i18n";
-import { useTranslation } from "react-i18next";
+
 const languages = [
   { code: "ar", label: "عربي" },
   { code: "en", label: "English" },
 ];
+
 const ANIMATION_DURATION = 0.4;
 const animationStatusInit: AnimationStatus = {
   animating: false,
@@ -53,8 +54,6 @@ function startAnimation(
 }
 
 function Navbar() {
-  const { t } = useTranslation();
-
   const [drawerOpen, setDrawerOpen] = useState(false);
   const controls = useAnimation();
   const [lastScrollY, setLastScrollY] = useState(0);
