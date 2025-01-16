@@ -19,6 +19,8 @@ import NavDrawer from "./Drawer";
 import { useAnimation, motion } from "framer-motion";
 import Link from "next/link";
 import i18n from "@/i18n/i18n";
+import { usePathname } from "next/navigation";
+import { revalidateAction } from "@/action/revaildateAction";
 
 const languages = [
   { code: "ar", label: "عربي" },
@@ -54,6 +56,8 @@ function startAnimation(
 }
 
 function Navbar() {
+  const path = usePathname();
+  console.log("path", path);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const controls = useAnimation();
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -189,6 +193,7 @@ function Navbar() {
                         onClick={() => {
                           i18n.changeLanguage(language.code);
                           handleClose();
+                          revalidateAction(path);
                         }}
                       >
                         {language.label}

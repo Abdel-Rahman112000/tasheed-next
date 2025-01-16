@@ -7,13 +7,13 @@ export async function fetchFrom<T = any>(
 ): Promise<T | null> {
   try {
     const cookieStore = await cookies();
-    const lang = cookieStore.get("i18next");
-    console.log("LayoutGroup", lang?.value);
+    const lang = cookieStore.get("i18next")?.value;
     const res = await fetch(input, {
       next: { revalidate: 3600 },
       ...init,
       headers: { lang: `${lang}` },
     });
+    console.log("res1111", res);
     if (res.ok) {
       return (await res.json()) as T;
     } else {
