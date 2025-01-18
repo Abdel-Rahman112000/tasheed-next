@@ -4,7 +4,7 @@ import { BlogGridItem, BlogsGridContainer } from "../_components/BlogCard";
 import BlogCard from "../_components/BlogCard";
 import { Box, Container, Grid } from "@mui/material";
 import { getBlogs } from "@/utils/api/get/blogs";
-import TabsBlog from "@/components/TabsBlog";
+import { TabsBlog } from "@/components/TabsBlog";
 
 async function BlogsPage() {
   const blogs = await getBlogs();
