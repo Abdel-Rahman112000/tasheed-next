@@ -9,11 +9,19 @@ import getAboutPageData from "@/utils/api/get/about-page";
 import { About } from "@/types/request/about";
 import Mission from "./components/mission";
 import OurProjects from "./components/our-projects";
-// export async function generateMetadata({ params }) {
-//   return {
-//     title: "...",
-//   };
-// }
+import type { Metadata } from "next";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const about = await getAboutPageData();
+
+  return {
+    title: about?.Benefit[0]?.seo?.title,
+    description: about?.Benefit[0]?.seo?.description,
+    openGraph: {
+      images: about?.Benefit[0].media[0].original_url,
+    },
+  };
+}
 async function AboutUsPage() {
   const about = await getAboutPageData();
 

@@ -14,7 +14,7 @@ type BlogType = {
 };
 export function TabsBlog() {
   const [value, setValue] = useState("1");
-  const [blogType, setBlogType] = useState<BlogType | null>(null); // Replace 'any' with the correct type of the blog data if needed.
+  const [blogType, setBlogType] = useState<BlogType>(); // Replace 'any' with the correct type of the blog data if needed.
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
@@ -24,12 +24,12 @@ export function TabsBlog() {
   useEffect(() => {
     const fetchBlogType = async () => {
       const fetchedBlogType = await getBlogsType(value);
-      console.log(fetchedBlogType);
       setBlogType(fetchedBlogType);
     };
 
     fetchBlogType();
   }, [value]); // Dependency on value to fetch new blog data when `value` changes.
+  if (!blogType) return <></>;
 
   return (
     <Box sx={{ width: "100%", py: 9 }}>
@@ -41,7 +41,7 @@ export function TabsBlog() {
           }}
         >
           <TabList onChange={handleChange}>
-            <Tab label="ceso" value="1" />
+            <Tab label="ceo" value="1" />
             <Tab label="Blog" value="2" />
             <Tab label="News" value="3" />
           </TabList>
@@ -49,9 +49,6 @@ export function TabsBlog() {
         <TabPanel value="1">
           <Container maxWidth="xl">
             <Stack>
-              {/* {blogType?.blogs.map((item) => (
-                <h1 key={item.id}>{item.title}</h1>
-              ))} */}
               {blogType?.blogs?.map((item, index) => (
                 <CeoCard
                   key={item.id}

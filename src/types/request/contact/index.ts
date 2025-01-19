@@ -1,4 +1,5 @@
 import { Media } from "@/types/common/Media";
+import { Seo } from "../home";
 
 export interface ContactGetRoot {
   contact: Contact;
@@ -22,6 +23,7 @@ export interface Contact {
   head_office: any;
   pictures: any[];
   media: Media[];
+  seo: Seo;
 }
 
 export interface VisitUsLink {

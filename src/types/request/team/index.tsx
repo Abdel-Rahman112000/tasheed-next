@@ -1,4 +1,5 @@
 import { Media } from "@/types/common/Media";
+import { Seo } from "../home";
 
 export interface TeamPageGetRoot {
   meet_team_page: MeetTeamPage;
@@ -15,6 +16,7 @@ export interface MeetTeamPage {
   updated_at: string;
   pictures: any[];
   media: Media[];
+  seo: Seo;
 }
 
 export interface TeamMember {

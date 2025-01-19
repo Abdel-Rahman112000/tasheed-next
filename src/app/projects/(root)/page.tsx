@@ -4,7 +4,19 @@ import ProjectCard from "./components/project-card";
 import GetProjectsPageData, {
   GetProjectsPageIntroData,
 } from "@/utils/api/get/projects-page";
+import type { Metadata } from "next";
 
+export async function generateMetadata(): Promise<Metadata> {
+  const data = await GetProjectsPageData();
+
+  return {
+    title: data?.projects[0]?.seo?.title,
+    description: data?.projects[0]?.seo?.description,
+    openGraph: {
+      images: data?.projects[0]?.media[0].original_url,
+    },
+  };
+}
 async function ProjectsPage() {
   const data = await GetProjectsPageData();
   const intro = await GetProjectsPageIntroData();

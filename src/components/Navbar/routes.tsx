@@ -22,7 +22,7 @@ export const routes = [
   createRoute("Projects", "/projects", <GridViewIcon />),
   createRoute("About Us", "/about", <QuestionMarkIcon />),
   createRoute("Blogs", "/blogs", <AssignmentIcon />),
-  createRoute("Our Team", "/team", <GroupsIcon />),
+  // createRoute("Our Team", "/team", <GroupsIcon />),
   createRoute("Careers", "/careers", <WorkHistoryIcon />),
   createRoute("Contact Us", "/contact", <CallIcon />, false),
 ];

@@ -22,6 +22,7 @@ export interface Home {
   file_type: string;
   pictures: any[];
   media: Media[];
+  seo: Seo;
 }
 
 export interface AboutGallery {
@@ -41,4 +42,10 @@ export interface Blog {
   updated_at: string;
   pictures: any[];
   media: Media[];
+}
+
+export interface Seo {
+  title: string;
+  description: string;
+  tags: string;
 }

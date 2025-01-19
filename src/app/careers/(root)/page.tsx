@@ -1,15 +1,26 @@
 import RotatedTitleInSide from "@/components/RotatedTitleInSide";
 import { Container, Stack, Typography } from "@mui/material";
 import JobCategoryAccordion from "./_components/JobCategoryAccordion";
-import JobCard from "./_components/JobCard";
 import MediaViwer from "../_components/MediaViewer";
 import RoundedButton from "@/components/RoundedButton";
 import getCareersPageData from "@/utils/api/get/careers-page";
 import Link from "next/link";
+import type { Metadata } from "next";
 
+export async function generateMetadata(): Promise<Metadata> {
+  const data = await getCareersPageData();
+
+  return {
+    title: data?.career_cover?.seo?.title,
+    description: data?.career_cover?.seo?.description,
+    openGraph: {
+      images: data?.career_cover.media[0].original_url,
+    },
+  };
+}
 async function CareersPage() {
-  const careers = await getCareersPageData();
-  if (!careers) {
+  const data = await getCareersPageData();
+  if (!data) {
     return <></>;
   }
   return (
@@ -21,7 +32,7 @@ async function CareersPage() {
             <Stack spacing={4}>
               <RotatedTitleInSide title="CAREERS">
                 <Stack spacing={2}>
-                  {careers.map((category) => (
+                  {data.careers.map((category) => (
                     <JobCategoryAccordion career={category} key={category.id} />
                   ))}
                 </Stack>

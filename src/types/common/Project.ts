@@ -1,3 +1,4 @@
+import { Seo } from "../request/home";
 import { Media } from "./Media";
 import { Pivot } from "./Pivot";
 
@@ -23,7 +24,8 @@ export interface Project {
   pictures?: any[];
   features?: Feature[];
   units?: Unit[];
-  media?: Media[];
+  media: Media[];
+  seo: Seo;
 }
 
 export interface Feature {

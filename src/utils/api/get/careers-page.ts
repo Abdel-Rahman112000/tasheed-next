@@ -4,7 +4,7 @@ import { fetchFrom } from "@/utils/helper/fetchFrom";
 
 async function getCareersPageData() {
   const res = await fetchFrom<CareersGetRoot>(api`careers`);
-  return res?.careers;
+  return res;
 }
 
 export default getCareersPageData;
