@@ -1,4 +1,5 @@
 import { Media } from "@/types/common/Media";
+import { Seo } from "../home";
 
 export interface BlogGetRoot {
   blog: Blog;
@@ -18,6 +19,7 @@ export interface Cover {
   file_type: string;
   pictures: any[];
   media: Media[];
+  seo: Seo;
 }
 
 export interface Blog {
@@ -29,6 +31,7 @@ export interface Blog {
   pictures: any[];
   descriptions: Description[];
   media: Media[];
+  seo: Seo;
 }
 
 export interface Description {
@@ -60,4 +63,9 @@ export interface Description {
   updated_at: string;
   pictures: any[];
   media: Media[];
+}
+
+export interface BlogType {
+  cover: Cover;
+  blogs: Blog[];
 }

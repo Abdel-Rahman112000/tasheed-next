@@ -6,29 +6,26 @@ import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import { useEffect, useState } from "react";
 import { Container, Stack } from "@mui/material";
-import getBlogsType from "@/utils/api/get/blogs-type";
-import { Blog } from "@/types/request/blog";
+import { BlogType } from "@/types/request/blog";
 import CeoCard from "@/app/blogs/_components/BlogsCeoCard";
-type BlogType = {
-  blogs: Blog[];
-};
+import { getBlogsType } from "@/utils/api/get/blogs-type";
+
 export function TabsBlog() {
   const [value, setValue] = useState("1");
-  const [blogType, setBlogType] = useState<BlogType>(); // Replace 'any' with the correct type of the blog data if needed.
-
+  const [blogType, setBlogType] = useState<BlogType>();
+  const lang = localStorage.getItem("i18nextLng");
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
 
-  // Fetch the blog data when `value` changes
   useEffect(() => {
     const fetchBlogType = async () => {
       const fetchedBlogType = await getBlogsType(value);
-      setBlogType(fetchedBlogType);
+      fetchedBlogType && setBlogType(fetchedBlogType);
     };
 
     fetchBlogType();
-  }, [value]); // Dependency on value to fetch new blog data when `value` changes.
+  }, [value, lang]);
   if (!blogType) return <></>;
 
   return (

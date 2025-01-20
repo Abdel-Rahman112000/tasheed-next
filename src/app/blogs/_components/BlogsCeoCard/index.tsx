@@ -9,7 +9,7 @@ function CeoCard({ reversed, member }: Props) {
         [reversed ? "borderTopLeftRadius" : "borderTopRightRadius"]: 64,
         [!reversed ? "borderBottomLeftRadius" : "borderBottomRightRadius"]: 64,
         height: { xs: "fit-content", md: 422 },
-        mt: { xs: "80px", md: "200px" },
+        mt: { xs: "80px", md: "100px" },
         p: { xs: 4, md: 0 },
         pb: { xs: 0 },
         px: { md: 8 },

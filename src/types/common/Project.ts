@@ -48,7 +48,8 @@ export interface Unit {
   created_at: string;
   updated_at: string;
   pictures?: any[];
-  media?: Media[];
+  media: Media[];
+  seo: Seo;
 }
 
 export interface Room {

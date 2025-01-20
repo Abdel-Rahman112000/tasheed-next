@@ -11,8 +11,8 @@ export async function generateMetadata(): Promise<Metadata> {
   const data = await GetHomePageData();
 
   return {
-    title: data?.home[0].seo.title,
-    description: data?.home[0].seo.description,
+    title: data?.home[0]?.seo?.title,
+    description: data?.home[0]?.seo?.description,
     openGraph: {
       images: [data?.home[0].media[0].original_url],
     },

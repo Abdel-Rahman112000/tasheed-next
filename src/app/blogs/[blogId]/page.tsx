@@ -5,6 +5,21 @@ import { IMAGE_FIT_STYLES } from "@/constants/image-fit-styles";
 import { Blog } from "@/types/request/blog";
 import BlogContent from "./_components/BlogContent";
 
+export async function generateMetadata({
+  params: { blogId },
+}: {
+  params: { blogId: string };
+}) {
+  const data = await getBlog(blogId);
+
+  return {
+    title: data?.seo?.title,
+    description: data?.seo?.description,
+    openGraph: {
+      images: data?.media[0].original_url,
+    },
+  };
+}
 async function BlogPage({
   params: { blogId },
 }: {
