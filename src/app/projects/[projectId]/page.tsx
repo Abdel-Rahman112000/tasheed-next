@@ -11,6 +11,22 @@ import Location from "./components/location";
 import KeayFeaturesContainer from "./components/key-features";
 import RenderMedia from "@/components/RenderMedia";
 
+// or Dynamic metadata
+export async function generateMetadata({
+  params: { projectId },
+}: {
+  params: { projectId: string };
+}) {
+  const data = await GetProject(projectId);
+
+  return {
+    title: data?.cover?.seo?.title,
+    description: data?.cover?.seo?.description,
+    openGraph: {
+      images: data?.cover?.media[0].original_url,
+    },
+  };
+}
 async function ProjectPage({
   params: { projectId },
 }: {

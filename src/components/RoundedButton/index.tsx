@@ -8,7 +8,7 @@ function RoundedButton<C extends ElementType>({
   return (
     <Button
       variant="contained"
-      sx={{ borderRadius: 100, px: 6, ...sx }}
+      sx={{ borderRadius: 100, px: 4, ...sx }}
       {...props}
     />
   );

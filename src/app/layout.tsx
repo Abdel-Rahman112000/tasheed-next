@@ -14,9 +14,6 @@ import AnimatedBackground from "@/components/AnimatedBackground";
 import { $Heights } from "@/constants/sizes";
 import AppProvider from "@/components/AppProvider";
 import NextTopLoader from "nextjs-toploader";
-import { cookies } from "next/headers";
-import axios from "axios";
-import { useRouter } from "next/router";
 
 export const metadata: Metadata = {
   title: "Tasheed",

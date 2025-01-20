@@ -1,5 +1,6 @@
 import { Media } from "@/types/common/Media";
 import { Project } from "@/types/common/Project";
+import { Seo } from "../home";
 
 export interface AboutPageGetRoot {
   about: About[];
@@ -42,6 +43,7 @@ export interface Benefit {
   description: string;
   pictures: any[];
   media: Media[];
+  seo: Seo;
 }
 
 export interface AboutVision {
