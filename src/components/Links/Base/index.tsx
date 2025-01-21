@@ -1,5 +1,6 @@
+import { Link } from "@/i18n/routing";
 import { Typography, TypographyProps } from "@mui/material";
-import Link, { LinkProps } from "next/link";
+import { LinkProps } from "next/link";
 
 function BaseLink({ children, props }: Props) {
   return (

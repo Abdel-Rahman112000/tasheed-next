@@ -1,5 +1,5 @@
 import { ForwardedRef, forwardRef } from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { useParams } from "next/navigation";
 
 export const LocalNavLink = forwardRef(function (

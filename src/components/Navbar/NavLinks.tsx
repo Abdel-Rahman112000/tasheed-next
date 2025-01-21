@@ -1,6 +1,6 @@
 import { Button, Stack } from "@mui/material";
 import { routes } from "./routes";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 
 function NavLinks() {
   return (

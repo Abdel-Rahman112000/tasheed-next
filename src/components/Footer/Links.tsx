@@ -1,6 +1,6 @@
 import { Grid, Link as MuiLink, Stack } from "@mui/material";
 import { SectionItem } from ".";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { ReactNode } from "react";
 import { routes } from "../Navbar/routes";
 import { useContact } from "@/hooks/contactProvider";

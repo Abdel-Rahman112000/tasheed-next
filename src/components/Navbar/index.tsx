@@ -3,12 +3,12 @@
 import Logo from "@/assets/images/logo-sm.png";
 import {
   Box,
-  Button,
   Container,
   Grid,
   IconButton,
-  Menu,
   MenuItem,
+  TextField,
+  Typography,
 } from "@mui/material";
 import NavLinks from "./NavLinks";
 import { $Heights } from "@/constants/sizes";
@@ -17,16 +17,12 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { useState, useEffect, useCallback } from "react";
 import NavDrawer from "./Drawer";
 import { useAnimation, motion } from "framer-motion";
-import Link from "next/link";
-import i18n from "@/i18n/i18n";
-import { usePathname } from "next/navigation";
-import { revalidateAction } from "@/action/revaildateAction";
-
-const languages = [
-  { code: "ar", label: "عربي" },
-  { code: "en", label: "English" },
+import { Link } from "@/i18n/routing";
+import { useLocale } from "next-intl";
+export const language = [
+  { id: 1, name: "ar" },
+  { id: 2, name: "en" },
 ];
-
 const ANIMATION_DURATION = 0.4;
 const animationStatusInit: AnimationStatus = {
   animating: false,
@@ -56,20 +52,12 @@ function startAnimation(
 }
 
 function Navbar() {
-  const path = usePathname();
-  console.log("path", path);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const controls = useAnimation();
   const [lastScrollY, setLastScrollY] = useState(0);
   const [dynamicZIndex, setDynamicZIndex] = useState(1000);
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+  const locale = useLocale();
+  const currentLang = locale.includes("ar") ? 1 : 2;
   const fromSpecificProject = useCallback<() => string>(() => {
     if (typeof window === "undefined") return "";
     const paths = location.pathname.split("/");
@@ -128,7 +116,7 @@ function Navbar() {
       >
         <Box component="nav" bgcolor={"background.default"} height={1}>
           <Container maxWidth="xl" sx={{ height: 1 }}>
-            <Grid container alignItems={"center"} sx={{ height: 1 }}>
+            <Grid container gap={1.5} alignItems={"center"} sx={{ height: 1 }}>
               {/* Logo Container */}
               <Grid item md={4} lg={2.5} flexGrow={1}>
                 <img src={Logo.src} height={42} alt="Tasheed" />
@@ -137,8 +125,8 @@ function Navbar() {
               <Grid
                 item
                 xs={0}
-                md={8}
-                lg={7}
+                md={7}
+                lg={6}
                 sx={{
                   display: {
                     xs: "none",
@@ -152,7 +140,7 @@ function Navbar() {
               <Grid
                 item
                 xs={0}
-                lg={2.5}
+                lg={2}
                 sx={{
                   display: {
                     xs: "none",
@@ -167,40 +155,51 @@ function Navbar() {
                 >
                   Contact Us
                 </RoundedButton>
-                <div>
-                  <Button
-                    id="basic-button"
-                    aria-controls={open ? "basic-menu" : undefined}
-                    aria-haspopup="true"
-                    aria-expanded={open ? "true" : undefined}
-                    onClick={handleClick}
-                  >
-                    Lang
-                  </Button>
-                  <Menu
-                    id="basic-menu"
-                    anchorEl={anchorEl}
-                    open={open}
-                    onClose={handleClose}
-                    MenuListProps={{
-                      "aria-labelledby": "basic-button",
-                    }}
-                    sx={{ zIndex: "12000000000000000000000" }}
-                  >
-                    {languages.map((language) => (
-                      <MenuItem
-                        key={language.code}
-                        onClick={() => {
-                          i18n.changeLanguage(language.code);
-                          handleClose();
-                          revalidateAction(path);
-                        }}
+              </Grid>
+              <Grid
+                sx={{
+                  display: {
+                    xs: "none",
+                    lg: "flex",
+                  },
+                }}
+                item
+                xs={0}
+                lg={1}
+              >
+                <TextField
+                  variant="standard"
+                  select
+                  fullWidth
+                  value={currentLang}
+                >
+                  {language.map((lang) => (
+                    <MenuItem
+                      key={lang.id}
+                      sx={{
+                        zIndex: 900000000000000000000000000000,
+                      }}
+                      value={lang.id}
+                    >
+                      <Box
+                        sx={{ width: "100%" }}
+                        component={Link}
+                        href={"/"}
+                        locale={lang.name}
                       >
-                        {language.label}
-                      </MenuItem>
-                    ))}
-                  </Menu>
-                </div>
+                        <Typography
+                          variant="body1"
+                          sx={{
+                            color: "#fff",
+                            fontSize: "18px",
+                          }}
+                        >
+                          {lang.name}
+                        </Typography>
+                      </Box>
+                    </MenuItem>
+                  ))}
+                </TextField>
               </Grid>
               {/* Menu Icon Container */}
               <Grid

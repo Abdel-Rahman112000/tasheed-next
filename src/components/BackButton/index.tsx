@@ -1,5 +1,5 @@
 import { Typography } from "@mui/material";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 function BackButton({ href = "/", label = "Back" }: Props) {

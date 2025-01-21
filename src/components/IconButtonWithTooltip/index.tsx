@@ -6,7 +6,7 @@ import {
   TooltipProps,
   Typography,
 } from "@mui/material";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 
 function IconButtonWithTooltip({
   title,

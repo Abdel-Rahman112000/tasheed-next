@@ -1,9 +1,19 @@
 "use client";
 
-import { Box, Button, Stack, SwipeableDrawer } from "@mui/material";
+import {
+  Box,
+  Button,
+  MenuItem,
+  Stack,
+  SwipeableDrawer,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { routes } from "./routes";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
+
 import ActiveLink from "../ActiveLink";
+import { language } from ".";
 
 function NavDrawer({ open, setOpen }: Props) {
   return (
@@ -27,7 +37,7 @@ function NavDrawer({ open, setOpen }: Props) {
               <Button
                 fullWidth
                 variant={isActive ? "contained" : "text"}
-                color={isActive ? "primary" : undefined}                
+                color={isActive ? "primary" : undefined}
                 size="large"
                 component={Link}
                 //startIcon={icon}
@@ -40,6 +50,40 @@ function NavDrawer({ open, setOpen }: Props) {
             )}
           />
         ))}
+        <TextField variant="standard" select fullWidth>
+          {language.map((lang) => (
+            <MenuItem
+              key={lang.id}
+              sx={{
+                backgroundColor: "primary.main",
+                "&:hover": {
+                  backgroundColor: "#fff",
+                },
+              }}
+            >
+              <Box
+                component={Link}
+                href={"/"}
+                locale={lang.name}
+                display={"flex"}
+                flexDirection={"row"}
+                alignItems={"center"}
+                gap={1}
+              >
+                <img src={""} height={"15px"} width={"30px"} />
+                <Typography
+                  variant="body1"
+                  sx={{
+                    color: "#fff",
+                    fontSize: "18px",
+                  }}
+                >
+                  {lang.name}
+                </Typography>
+              </Box>
+            </MenuItem>
+          ))}
+        </TextField>
       </Stack>
     </SwipeableDrawer>
   );
