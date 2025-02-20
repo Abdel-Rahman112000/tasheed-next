@@ -15,6 +15,7 @@ import { motion, useInView } from "framer-motion";
 import { forwardRef, useRef } from "react";
 import ProjectCard from "./ProjectCard";
 import { HomePageGetRequestRoot } from "@/types/request/home";
+import { useTranslations } from "next-intl";
 
 const ProjectGridItem = ({
   theme,
@@ -39,6 +40,7 @@ const ProjectGridItem = ({
 const FeaturedProjects = forwardRef<HTMLDivElement, Props>(
   function FeaturedProjects({ data }, ref) {
     const boxRef = useRef<HTMLDivElement>(null);
+    const t = useTranslations();
     const isInView = useInView(boxRef, {
       margin: "100% 0px -275px 0px",
     });
@@ -49,7 +51,7 @@ const FeaturedProjects = forwardRef<HTMLDivElement, Props>(
         <Container maxWidth="xl" ref={ref}>
           <Stack ref={boxRef} alignItems={"center"}>
             <Typography textAlign="center" fontWeight={700} variant="h2" mb={6}>
-              FEATURED PROJECTS
+              {t("HomePage.FEATURED_PROJECTS")}
             </Typography>
             <motion.div
               style={{ width: "100%" }}

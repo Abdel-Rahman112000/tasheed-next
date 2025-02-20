@@ -1,7 +1,7 @@
 import { Blog } from "@/types/request/blog";
 import { Box, Grid, Typography } from "@mui/material";
 
-function CeoCard({ reversed, member }: Props) {
+function CeoCard({ reversed, member }: PropsBlogType) {
   return (
     <Box
       sx={{
@@ -30,7 +30,7 @@ function CeoCard({ reversed, member }: Props) {
         >
           <Box
             component="img"
-            src={member.media?.[0]?.original_url || ""}
+            src={member?.media?.[0]?.original_url || ""}
             alt="manager image"
             sx={{
               height: { xs: 1, md: "80%", lg: "110%" },
@@ -75,10 +75,10 @@ function CeoCard({ reversed, member }: Props) {
               gutterBottom
               textAlign={reversed ? "end" : "start"}
             >
-              {member.title}
+              {member?.title}
             </Typography>
             <Typography variant="body2" textAlign={reversed ? "end" : "start"}>
-              {member.description}
+              {member?.description}
             </Typography>
           </Box>
         </Grid>
@@ -87,7 +87,7 @@ function CeoCard({ reversed, member }: Props) {
   );
 }
 
-type Props = {
+export type PropsBlogType = {
   reversed?: boolean;
   member: Blog;
 };

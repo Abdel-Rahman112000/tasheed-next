@@ -1,21 +1,17 @@
 "use client";
 
-import {
-  Box,
-  Button,
-  MenuItem,
-  Stack,
-  SwipeableDrawer,
-  TextField,
-  Typography,
-} from "@mui/material";
-import { routes } from "./routes";
-import { Link } from "@/i18n/routing";
-
+import { Box, Button, Stack, SwipeableDrawer } from "@mui/material";
+import { useRoutes } from "./routes";
+import { Link, usePathname } from "@/i18n/routing";
+import Gb from "@/assets/icons/gb.svg";
+import Eg from "@/assets/icons/eg.svg";
 import ActiveLink from "../ActiveLink";
-import { language } from ".";
+import Image from "next/image";
+import { useLocale } from "next-intl";
 
 function NavDrawer({ open, setOpen }: Props) {
+  const locale = useLocale();
+  const pathname = usePathname();
   return (
     <SwipeableDrawer
       anchor={"right"}
@@ -29,7 +25,7 @@ function NavDrawer({ open, setOpen }: Props) {
       PaperProps={{ sx: { backgroundColor: "background.default" } }}
     >
       <Stack width={"280px"} p={4} py={8} spacing={2}>
-        {routes.map(({ name, path, icon }) => (
+        {useRoutes().map(({ name, path, icon }) => (
           <ActiveLink
             key={`${name} - ${path}`}
             path={path}
@@ -50,40 +46,49 @@ function NavDrawer({ open, setOpen }: Props) {
             )}
           />
         ))}
-        <TextField variant="standard" select fullWidth>
-          {language.map((lang) => (
-            <MenuItem
-              key={lang.id}
-              sx={{
-                backgroundColor: "primary.main",
-                "&:hover": {
-                  backgroundColor: "#fff",
-                },
-              }}
-            >
+        <Box>
+          {locale == "ar" ? (
+            <Link href={pathname} locale="en">
               <Box
-                component={Link}
-                href={"/"}
-                locale={lang.name}
-                display={"flex"}
-                flexDirection={"row"}
-                alignItems={"center"}
-                gap={1}
+                sx={{
+                  display: "flex",
+                  justifyContent: "space-evenly",
+                  alignItems: "center",
+                  color: "#fff",
+                }}
               >
-                <img src={""} height={"15px"} width={"30px"} />
-                <Typography
-                  variant="body1"
-                  sx={{
-                    color: "#fff",
-                    fontSize: "18px",
-                  }}
-                >
-                  {lang.name}
-                </Typography>
+                <Image
+                  src={Gb}
+                  alt="english"
+                  width={30}
+                  height={30}
+                  className="min-w-[30px]"
+                />
+                En
               </Box>
-            </MenuItem>
-          ))}
-        </TextField>
+            </Link>
+          ) : (
+            <Link href={pathname} locale="ar">
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "space-evenly",
+                  alignItems: "center",
+                  color: "#fff",
+                }}
+              >
+                <Image
+                  src={Eg}
+                  alt="Arabic"
+                  width={30}
+                  height={30}
+                  className="min-w-[30px]"
+                />
+                Ar
+              </Box>
+            </Link>
+          )}
+        </Box>
       </Stack>
     </SwipeableDrawer>
   );

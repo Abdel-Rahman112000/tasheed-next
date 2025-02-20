@@ -37,12 +37,7 @@ function Footer() {
   const { data } = useContact();
 
   return (
-    <Box
-      component="footer"
-      mt={6}
-      py={12}
-      sx={{ bgcolor: "background.darkest" }}
-    >
+    <Box component="footer" py={12} sx={{ bgcolor: "background.darkest" }}>
       <Container maxWidth="xl">
         <Grid spacing={2} rowSpacing={12} container>
           <GridItem>

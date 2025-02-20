@@ -1,5 +1,29 @@
 {
   "HomePage": {
-    "title": "Hello world!"
+    "home": "الصفحة الرئيسية",
+    "projects": "المشاريع",
+    "aboutUs": "معلومات عنا",
+    "blogs": "المدونات",
+    "careers": "الوظائف",
+    "contactUs": "اتصل بنا",
+    "Learn_More": "تعرف أكثر",
+    "FEATURED_PROJECTS": "المشاريع المميزة",
+    "ABOUT_US": "معلومات عنا",
+    "See_More!": "رؤية المزيد!",
+    "ONGOING_PROJECTS": "المشاريع الجارية",
+    "NEWS_BLOGS": "الأخبار والمدونات",
+    "SITEMAP": "خريطة الموقع",
+    "SOCIALS": "الشبكات الاجتماعية",
+    "Facebook": "فيسبوك",
+    "LinkedIn": "لينكد إن",
+    "Instagram": "إنستغرام",
+    "Twitter": "تويتر",
+    "HEAD_OFFICE": "المكتب الرئيسي",
+    "NEWS_LETTER": "النشرة الإخبارية",
+    "Enter_email": "أدخل عنوان بريدك الإلكتروني",
+    "OUR_PROJECTS": "مشاريعنا",
+    "YEAR": "السنة",
+    "LOCATION": "الموقع",
+    "AREA": "المساحة"
   }
 }

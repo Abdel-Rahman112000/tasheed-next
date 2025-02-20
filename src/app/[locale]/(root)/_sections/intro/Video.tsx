@@ -3,9 +3,11 @@ import RoundedButton from "@/components/RoundedButton";
 import { Link } from "@/i18n/routing";
 import { Home } from "@/types/request/home";
 import { Box, Stack, Typography } from "@mui/material";
+import { useTranslations } from "next-intl";
 
 function Video({ onClick, introData }: VideoProps) {
   const media = introData.media[0];
+  const t = useTranslations();
 
   return (
     <Stack position={"relative"} width={1} height={1} onClick={onClick}>
@@ -43,7 +45,7 @@ function Video({ onClick, introData }: VideoProps) {
               href="/projects"
               sx={{ mt: 4, pointerEvents: "all" }}
             >
-              Learn More
+              {t("HomePage.Learn_More")}
             </RoundedButton>
           </Box>
         )}

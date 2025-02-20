@@ -1,5 +1,29 @@
 {
   "HomePage": {
-    "title": "Hello world!"
+    "home": "home",
+    "projects": "projects",
+    "aboutUs": "aboutUs",
+    "blogs": "blogs",
+    "careers": "careers",
+    "contactUs": "contact Us",
+    "Learn_More": "Learn More",
+    "FEATURED_PROJECTS": "FEATURED PROJECTS",
+    "ABOUT_US": "ABOUT US",
+    "See_More!": "See More!",
+    "ONGOING_PROJECTS": "ONGOING PROJECTS",
+    "NEWS_BLOGS": "NEWS & BLOGS",
+    "SITEMAP": "SITEMAP",
+    "SOCIALS": "SOCIALS",
+    "Facebook": "Facebook",
+    "LinkedIn": "LinkedIn",
+    "Instagram": "Instagram",
+    "Twitter": "Twitter",
+    "HEAD_OFFICE": "HEAD OFFICE",
+    "NEWS_LETTER": "NEWS LETTER",
+    "Enter_email": "Enter your email address",
+    "OUR_PROJECTS": "OUR_PROJECTS",
+    "YEAR": "YEAR",
+    "LOCATION": "LOCATION",
+    "AREA": "AREA"
   }
 }

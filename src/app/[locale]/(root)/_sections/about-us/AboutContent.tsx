@@ -2,18 +2,17 @@ import DashSeparator from "@/components/DashSeparator";
 import { Link } from "@/i18n/routing";
 import { About } from "@/types/request/home";
 import { Grid, Stack, Typography } from "@mui/material";
+import { useTranslations } from "next-intl";
 
 function AboutContent({ about: { title, description_home } }: Props) {
+  const t = useTranslations();
+
   return (
     <Grid item xs={12} md={5.5}>
       <Stack py={"20px"} spacing={4}>
         <DashSeparator />
         <Typography variant="h2" lineHeight="1.5em" letterSpacing={".15em"}>
-          {title || (
-            <>
-              ABOUT <br /> US
-            </>
-          )}
+          {title || <>{t("HomePage.ABOUT_US")}</>}
         </Typography>
         <Typography
           component={"div"}
@@ -27,7 +26,7 @@ function AboutContent({ about: { title, description_home } }: Props) {
           }}
         />
         <Link style={{ color: "#E09B6B" }} href="/about">
-          See More!
+          {t("HomePage.See_More!")}{" "}
         </Link>
       </Stack>
     </Grid>

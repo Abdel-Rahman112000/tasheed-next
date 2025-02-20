@@ -1,15 +1,9 @@
 "use client";
 
 import Logo from "@/assets/images/logo-sm.png";
-import {
-  Box,
-  Container,
-  Grid,
-  IconButton,
-  MenuItem,
-  TextField,
-  Typography,
-} from "@mui/material";
+import Gb from "@/assets/icons/gb.svg";
+import Eg from "@/assets/icons/eg.svg";
+import { Box, Container, Grid, IconButton } from "@mui/material";
 import NavLinks from "./NavLinks";
 import { $Heights } from "@/constants/sizes";
 import RoundedButton from "../RoundedButton";
@@ -17,12 +11,10 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { useState, useEffect, useCallback } from "react";
 import NavDrawer from "./Drawer";
 import { useAnimation, motion } from "framer-motion";
-import { Link } from "@/i18n/routing";
-import { useLocale } from "next-intl";
-export const language = [
-  { id: 1, name: "ar" },
-  { id: 2, name: "en" },
-];
+import { Link, usePathname } from "@/i18n/routing";
+import { useLocale, useTranslations } from "next-intl";
+import Image from "next/image";
+
 const ANIMATION_DURATION = 0.4;
 const animationStatusInit: AnimationStatus = {
   animating: false,
@@ -52,12 +44,14 @@ function startAnimation(
 }
 
 function Navbar() {
+  const t = useTranslations();
+
   const [drawerOpen, setDrawerOpen] = useState(false);
   const controls = useAnimation();
   const [lastScrollY, setLastScrollY] = useState(0);
   const [dynamicZIndex, setDynamicZIndex] = useState(1000);
   const locale = useLocale();
-  const currentLang = locale.includes("ar") ? 1 : 2;
+  const pathname = usePathname();
   const fromSpecificProject = useCallback<() => string>(() => {
     if (typeof window === "undefined") return "";
     const paths = location.pathname.split("/");
@@ -147,59 +141,62 @@ function Navbar() {
                     lg: "flex",
                   },
                 }}
-                justifyContent={"end"}
+                justifyContent={"start"}
               >
                 <RoundedButton
                   component={Link}
                   href={`/contact/${fromSpecificProject()}`}
                 >
-                  Contact Us
+                  {t("HomePage.contactUs")}
                 </RoundedButton>
               </Grid>
               <Grid
-                sx={{
-                  display: {
-                    xs: "none",
-                    lg: "flex",
-                  },
-                }}
                 item
                 xs={0}
                 lg={1}
+                sx={{ display: { xs: "none", md: "block" } }}
               >
-                <TextField
-                  variant="standard"
-                  select
-                  fullWidth
-                  value={currentLang}
-                >
-                  {language.map((lang) => (
-                    <MenuItem
-                      key={lang.id}
+                {locale == "ar" ? (
+                  <Link href={pathname} locale="en">
+                    <Box
                       sx={{
-                        zIndex: 900000000000000000000000000000,
+                        display: "flex",
+                        justifyContent: "space-evenly",
+                        alignItems: "center",
+                        color: "#fff",
                       }}
-                      value={lang.id}
                     >
-                      <Box
-                        sx={{ width: "100%" }}
-                        component={Link}
-                        href={"/"}
-                        locale={lang.name}
-                      >
-                        <Typography
-                          variant="body1"
-                          sx={{
-                            color: "#fff",
-                            fontSize: "18px",
-                          }}
-                        >
-                          {lang.name}
-                        </Typography>
-                      </Box>
-                    </MenuItem>
-                  ))}
-                </TextField>
+                      <Image
+                        src={Gb}
+                        alt="english"
+                        width={30}
+                        height={30}
+                        className="min-w-[30px]"
+                      />
+                      En
+                    </Box>
+                  </Link>
+                ) : (
+                  <Link href={pathname} locale="ar">
+                    <Box
+                      sx={{
+                        display: "flex",
+                        justifyContent: "space-evenly",
+                        alignItems: "center",
+                        color: "#fff",
+                      }}
+                    >
+                      <Image
+                        src={Eg}
+                        alt="Arabic"
+                        width={30}
+                        height={30}
+                        className="min-w-[30px]"
+                      />
+                      Ar
+                    </Box>
+                  </Link>
+                )}
               </Grid>
               {/* Menu Icon Container */}
               <Grid

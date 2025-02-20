@@ -5,9 +5,11 @@ import Slider from "./Slider";
 import { motion } from "framer-motion";
 import { $Framer } from "@/constants/framer";
 import { HomePageGetRequestRoot } from "@/types/request/home";
+import { useTranslations } from "next-intl";
 
 function OngoingProjects({ data }: Props) {
   const { singleProject } = data;
+  const t = useTranslations();
 
   return (
     <motion.div
@@ -23,7 +25,9 @@ function OngoingProjects({ data }: Props) {
         <div>
           <Container maxWidth={"xl"}>
             <Stack spacing={4}>
-              <Typography variant="h2">ONGOING PROJECTS</Typography>
+              <Typography variant="h2">
+                {t("HomePage.ONGOING_PROJECTS")}
+              </Typography>
             </Stack>
           </Container>
         </div>

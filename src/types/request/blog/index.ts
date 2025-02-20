@@ -32,6 +32,7 @@ export interface Blog {
   descriptions: Description[];
   media: Media[];
   seo: Seo;
+  type_ceo: string;
 }
 
 export interface Description {
@@ -44,17 +45,6 @@ export interface Description {
   media: Media[];
 }
 
-export interface Blog {
-  id: number;
-  title: string;
-  description: string;
-  created_at: string;
-  updated_at: string;
-  pictures: any[];
-  descriptions: Description[];
-  media: Media[];
-}
-
 export interface Description {
   id: number;
   blog_id: number;
@@ -63,6 +53,7 @@ export interface Description {
   updated_at: string;
   pictures: any[];
   media: Media[];
+  type_ceo: string;
 }
 
 export interface BlogType {

@@ -17,6 +17,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import { api } from "@/constants/api";
 import { useSnackbar } from "notistack";
+import { useTranslations } from "next-intl";
 
 const newsLetterSchema = z.object({
   email: z.string().email(),
@@ -25,6 +26,8 @@ type NewsLetterType = z.infer<typeof newsLetterSchema>;
 
 function NewsLetter() {
   const { data } = useContact();
+  const t = useTranslations();
+
   const {
     reset,
     register,
@@ -44,17 +47,17 @@ function NewsLetter() {
 
   return (
     <Stack spacing={6}>
-      <SectionItem label="HEAD OFFICE">
+      <SectionItem label={t("HomePage.HEAD_OFFICE")}>
         <Typography>{data?.head_office}</Typography>
       </SectionItem>
-      <SectionItem label="NEWS LETTER">
+      <SectionItem label={t("HomePage.NEWS_LETTER")}>
         <Box component={"form"} onSubmit={onSubmit}>
           <TextField
             variant="standard"
             type="email"
-            placeholder="Enter your email address"
+            placeholder={t("HomePage.Enter_email")}
             disabled={isSubmitting}
-            label="Enter your email address"
+            label={t("HomePage.Enter_email")}
             {...register("email")}
             InputProps={{
               endAdornment: (

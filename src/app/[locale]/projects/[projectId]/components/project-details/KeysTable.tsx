@@ -8,6 +8,7 @@ import TableCell from "@mui/material/TableCell";
 import { ReactNode } from "react";
 import { Typography } from "@mui/material";
 import { Project } from "@/types/common/Project";
+import { useTranslations } from "next-intl";
 
 const TableRowData = ({ label, value }: TableRowProps) => (
   <TableRow>
@@ -26,13 +27,18 @@ const TableRowData = ({ label, value }: TableRowProps) => (
 type TableRowProps = { label: ReactNode; value: ReactNode };
 
 function KeysTable({ project }: Props) {
+  const t = useTranslations();
+
   return (
     <TableContainer>
       <Table aria-label="simple table">
         <TableBody>
-          <TableRowData label={"YEAR"} value={project.year} />
-          <TableRowData label={"LOCATION"} value={project.location} />
-          <TableRowData label={"AREA"} value={project.data} />
+          <TableRowData label={t("HomePage.YEAR")} value={project.year} />
+          <TableRowData
+            label={t("HomePage.LOCATION")}
+            value={project.location}
+          />
+          <TableRowData label={t("HomePage.AREA")} value={project.data} />
         </TableBody>
       </Table>
     </TableContainer>

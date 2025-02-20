@@ -21,7 +21,7 @@ function Slider({ blogs }: Props) {
 
   const { palette } = useTheme();
   return (
-    <Box width={1}>
+    <Box width={1} sx={{ mb: 6 }}>
       <Swiper
         modules={[EffectCoverflow, Pagination, Navigation, Autoplay]}
         effect={"coverflow"}

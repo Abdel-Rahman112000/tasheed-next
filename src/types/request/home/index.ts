@@ -42,6 +42,7 @@ export interface Blog {
   updated_at: string;
   pictures: any[];
   media: Media[];
+  type_ceo: string;
 }
 
 export interface Seo {

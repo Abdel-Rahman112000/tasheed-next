@@ -1,8 +1,11 @@
 import RenderMedia from "@/components/RenderMedia";
 import { ProjectPage } from "@/types/request/project";
 import { Container, Stack, Typography } from "@mui/material";
+import { useTranslations } from "next-intl";
 
 function IntroSection({ data }: Props) {
+  const t = useTranslations();
+
   return (
     <Stack
       sx={{
@@ -34,9 +37,7 @@ function IntroSection({ data }: Props) {
       <Stack sx={{ zIndex: 10, pointerEvents: "none" }} spacing={4}>
         <Container maxWidth="md">
           <Typography variant="h2" textAlign={"center"}>
-            OUR
-            <br />
-            PROJECTS
+            {t("HomePage.OUR_PROJECTS")}
           </Typography>
           <Typography
             variant="h6"

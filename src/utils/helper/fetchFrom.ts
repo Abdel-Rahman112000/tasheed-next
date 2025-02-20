@@ -13,7 +13,6 @@ export async function fetchFrom<T = any>(
       ...init,
       headers: { lang: `${lang}` },
     });
-    console.log("res1111", res);
     if (res.ok) {
       return (await res.json()) as T;
     } else {

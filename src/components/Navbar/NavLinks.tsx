@@ -1,5 +1,5 @@
 import { Button, Stack } from "@mui/material";
-import { routes } from "./routes";
+import { RouteType, useRoutes } from "./routes";
 import { Link } from "@/i18n/routing";
 
 function NavLinks() {
@@ -17,9 +17,9 @@ function NavLinks() {
         xl: 8,
       }}
     >
-      {routes
-        .filter((x) => x.isPrimary)
-        .map(({ name, path }) => (
+      {useRoutes()
+        .filter((x: RouteType) => x.isPrimary)
+        .map(({ name, path }: { name: string; path: string }) => (
           <Button
             key={`${name}${path}`}
             component={Link}

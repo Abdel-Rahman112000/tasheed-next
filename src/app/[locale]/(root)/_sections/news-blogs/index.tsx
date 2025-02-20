@@ -6,8 +6,11 @@ import { motion } from "framer-motion";
 import { $Framer } from "@/constants/framer";
 import { HomePageGetRequestRoot } from "@/types/request/home";
 import { Link } from "@/i18n/routing";
+import { useTranslations } from "next-intl";
 
 function NewsAndBlogs({ data: { blogs } }: Props) {
+  const t = useTranslations();
+
   return (
     <Stack
       spacing={4}
@@ -20,7 +23,7 @@ function NewsAndBlogs({ data: { blogs } }: Props) {
       <div>
         <Container maxWidth={"xl"}>
           <Stack spacing={4} textAlign={"center"} alignItems={"center"}>
-            <Typography variant="h2">NEWS & BLOGS</Typography>
+            <Typography variant="h2">{t("HomePage.NEWS_BLOGS")}</Typography>
             {/* <Typography
               variant="h6"
               fontWeight={500}

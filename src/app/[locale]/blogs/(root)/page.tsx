@@ -24,7 +24,7 @@ async function BlogsPage() {
   if (!blogs) return <></>;
 
   return (
-    <>
+    <Box sx={{ background: "#000" }}>
       {blogs?.caver.media[0] && (
         <IntroImageSection media={blogs?.caver.media[0]}>
           <Typography variant="h2" textAlign="center">
@@ -42,26 +42,7 @@ async function BlogsPage() {
       <Box>
         <TabsBlog />
       </Box>
-      <Box py={8}>
-        <Container maxWidth="xl">
-          <Box>
-            <BlogsGridContainer>
-              {blogs?.blogs.map((blog, index) =>
-                index === 0 ? (
-                  <Grid key={blog.id} item xs={12} sm={6} md={12}>
-                    <BlogCard horizontal blog={blog} />
-                  </Grid>
-                ) : (
-                  <BlogGridItem key={blog.id}>
-                    <BlogCard blog={blog} />
-                  </BlogGridItem>
-                )
-              )}
-            </BlogsGridContainer>
-          </Box>
-        </Container>
-      </Box>
-    </>
+    </Box>
   );
 }
 
